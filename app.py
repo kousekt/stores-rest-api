@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify
 from flask_restful import Api
 from flask_jwt import JWT
@@ -8,7 +9,8 @@ from resources_pkg.store import Store, StoreList
 from db import db
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///therondata.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
+    'DATABASE_URL', 'sqlite:///therondata.db') # Use SQLite IF DATABASE_URL does not exist
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # lesson 105 10:10
 app.secret_key = 'secretkey'
 api = Api(app)
