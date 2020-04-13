@@ -18,7 +18,7 @@ api = Api(app)
 # It only creates tables that it sees.  Has to go thru imports..  Looks at the models in the imports..
 # You IMPORT the things you want SQLAlchemy to know about..
 @app.before_first_request
-def create_tables():
+def create_tables():  
   db.create_all()  # Create the db in the SQLALCHEMY_DATABASE_URI
 
 # That will use the authenticate and identity together  76, 1:00
