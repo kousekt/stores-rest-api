@@ -27,7 +27,7 @@ class Item(Resource):
   @jwt_required()  # for production
   def post(self, name):
     if ItemModel.find_by_name(name):    
-      return {'message': f"An item with {name} already exists"}, 400
+      return {'message': f"An item with that name already exists"}, 400
 
     data = Item.parser.parse_args()
     item = ItemModel(name, **data) # Lesson 110 12:15
